@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "shoper-app",
+  "private_key_id": "198b2b6cbc3ecdef56273b2fdd7b5d8e54502af2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCkwdqvaE1fwGIa\nhS/9rXWg5IE5J/YMtelo9ShKxeKaFZe3usKNTWajsSysPQNt35GQYd3zU0mguxQ4\n+Yoyv0bGiNv9WPicONid/Ju/8oQvu4Le2lbgsQeiZc4fGYCYgibLzKpOKEKMkQ9w\nSiuD+M1eVwkoCFekQgENVOhE5p1/7+pgGPiirRLFhX4aUr7f1TjZIhrQpCLSm8vN\n26tX/jTJjdP5CZ+gS7ILSpISGMLVjmqdZMZZa3IQNY7fJcZ4rjsjMjgXMETCb/yu\n3IarLxYM93TlNtwafxZ/4QBBL8R88l4IbbRFM03jvJra7N9tdN4sQ4wnA4uWYxMU\n3hPiMUX5AgMBAAECggEAA/i/wkU7KKqZ75/UA5Z0IYQIpz2GBXhRwpI2xBcUapiV\nKI+jvRjHarBGQaoTd4lX0eynpB2j030j1GjHLFVNY5+5rLHBn0oRuYmoO1Hhd/rm\n9LAIpdBJ43mqGAVUth7crqjsVq4XrQBNNTmDsyHjDE0zhXSU0+FnpmNGDLn1ER57\nQzWnTEqbnNXtBZMol0FdfhkMj7t03C1jNimeD0jHYmL1iB2glZxAleZPPkHBrdsN\nf+urZPbQHu0eMA2PwLiOvar//SYInVPMS++gM0CbRrgclXbjfHzUSif1f1gBfHDc\nqeJGiVIas6RUIM2Lk7Sz0RgSPE9cKjxjI2WFOFZgIQKBgQDkJedIBwON1/iXmvG0\nS8DdjCVdCHnnHuDy/xS0Ocs0ugeA4tN+jRtHKivBNHyW1NejnQ6DFaD67pJ94Vj2\n3SBTa1dNF4D4/vzw6sCmrsZwYcuqjVUaFEugdi7s2GAPgND43mS7rBJ14FpFrXAM\nhPNPb2fJygvTbozvPIP4Gao8UQKBgQC43tt1bGsTgjNGQ3WokNyuB0t/7Qa9S/et\nxQq+Sj5lk58QsdV4zkiSAPhjm2iKNhXDxd6cBncjbERDH5gAPzrdj+v0l4FQlRh6\nP3uo0I0meHqEc27pVL9rWHa8ZrZgCy8xNN6Fb7p4kFJ7XZXpOJcGOBFqCa3wLHqE\nruqx2yWNKQKBgBorEs0bKNgzJmtVNVYFvlhrA7oZB8pvq0OT6G8Hlfw1PjkVS0bf\nrnpKJvyhJY0zWoyEri5w46cEiD7yAv9Fu7h1vmy0PnHQ5XhIpNI5h79KKE8mqNU1\n8Lq184ntA4+jqdRxxcIU6YUlt5T4YLq+4R2CXLgzeYnFy1qBaW2im/kRAoGAE4Df\nYjn36ez4f9cqGIh/35RBcNOOvHXBQYHiKkUm5Ax44YgBX2dT3KNhkRCaLMqb7TV4\n0LkV5JTNds9kd9Iz4aAHYpyBNgEkvfDomNy3p3Faa5LKBq+8KhUBIcssPmGvrt9H\nAojRAVsoeH9dC2e+9xb/L1KqGQZ4Pns9o1ndUlECgYEAqFH1mQzaKJQZ6mtlvlMS\nhymVJikfsC8sJl1ye3KZmLIu7PqfDfPSMca1ju/71f2h2xvjO4QdDuFLheeQLgzO\nahsqwfGGRSOJZth6OPUdb6Ae+fAt/MqM2uy0H4TOFKg43c0UTolUUXHUsw+1EwMd\nOWhTFLztsq4IX4G61SM3MOQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "event-680@shoper-app.iam.gserviceaccount.com",
+  "client_id": "112632098951209020092",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/event-680%40shoper-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
