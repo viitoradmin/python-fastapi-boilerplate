@@ -1,19 +1,13 @@
 from fastapi import status
-from config import database
-from fastapi import Depends
-from sqlalchemy.orm import Session
 from fastapi_utils.cbv import cbv
-from apps.api.auth import schema
 from fastapi import APIRouter
 from apps.constant import constant
 from fastapi_versioning import version
-from fastapi_utils.inferring_router import InferringRouter
 from apps.utils.standard_response import StandardResponse
 
 ## Load API's
 defaultrouter = APIRouter()
 router = APIRouter()
-getdb = database.get_db
 
 ## Define verison 1 API's here
 @cbv(defaultrouter)
@@ -35,15 +29,14 @@ class UserCrudApi():
     
     @defaultrouter.post('/create/user')
     @version(1)
-    async def create_user(self, body: schema.UserAuth,
-                          db: Session = Depends(getdb)):
+    async def create_user(self):
         """This API is for create user.
         Args: 
             body(dict) : user's data
         Returns:
             response: will return the user's data"""
         try:
-            data = body.dict()
+            data = {"user": "user's data"}
             return StandardResponse(True, status.HTTP_200_OK, data, constant.STATUS_SUCCESS)
         except Exception as e:
             return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
