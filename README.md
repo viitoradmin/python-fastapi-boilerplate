@@ -1,72 +1,164 @@
-# FastAPI boilerplate
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+   <img src="images/python_logo.png" alt="Logo" width="80" height="80">
 
-## 🛠 Skills
-Python, Fask-API, Swagger Doc, Html and Java Scripts.
+<h3 align="center">Python Fast API boilerplate</h3>
+
+  <p align="center">
+      Fast API boiler plate project 
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details  >
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+FastAPI boilerplate provides a simple basic structure for project creation with mysql database.
+
+
+### Built With
+
+* [![Python][Python]][Python-url]
+* [![FastAPI][FastAPI]][FastAPI-url]
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Instructions for setting up project locally.
+To get a local copy up and running follow these simple steps.
 
 ## Install + configure the project
 
 ### 1. Linux
-```
-# Create python virtual environment
-python3 -m venv venv
+### Prerequisites
 
-# Activate the python virtual environment
-source venv/bin/activate
+Requirement of Project
+* Install Python 
+  ```sh
+  Python-Version : 3.10.13
+  ```
+* Create python virtual environment
+  ```sh
+  python3 -m venv venv
+  ```
+* Activate the python virtual environment
+  ```sh
+  source venv/bin/activate
+  ```
 
-# Install the requirements for the project into the virtual environment
-pip install -r requirements.txt
+### Installation
 
-# Install the dependencies of Fast API
-pip install "fastapi[all]"
+1. Clone the repo
+   ```sh
+   git clone https://github.com/viitoradmin/python-fastapi-boilerplate
+   ```
+2. Upgrade pip version
+    ```sh
+   python -m pip install --upgrade pip==22.1.2
+    ```
+3. Install the requirements for the project into the virtual environment
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. Install the dependencies of Fast API
+   ```sh
+   pip install "fastapi[all]"
+   ```
 
-# Upgrade pip version
-python -m pip install --upgrade pip==22.1.2
-```
 ### 2. Windows
-```
-# Create python virtual environment
-conda create --name venv python=3.10.12
 
-# Activate the python virtual environment
-conda activate venv
+1. Create python virtual environment
+   ```
+   conda create --name venv python=3.10.12
+   ```
 
-# Install the requirements for the project into the virtual environment in the following sequence:
-pip install -r requirements.txt
+2. Activate the python virtual environment
+   ```
+   conda activate venv
+   ```
 
-# Install the dependencies of Fast API
-pip install "fastapi[all]"
+3. Install the requirements for the project into the virtual environment in the following sequence:
+   ```
+   pip install -r requirements.txt
+   ```
 
-# Upgrade pip version
-python -m pip install --upgrade pip==22.1.2
-```
+4. Install the dependencies of Fast API
+   ```
+   pip install "fastapi[all]"
+   ```
 
-## Use the alembic to Upgrade/Downgrade the database in the FastAPI
-Note: Because by default Fastapi is provide only initial migrations. It doesn't support the upgrade and downgrade the database.
-so,to perform automatic migrations follow the following steps:
+5. Upgrade pip version
+   ```
+   python -m pip install --upgrade pip==22.1.2
+   ```
 
-1. # To create Migration folder
-python -m alembic init migrations
+### Use the alembic to Upgrade/Downgrade the database in the FastAPI
+  Note: Because by default Fastapi is provide only initial migrations. 
+  It doesn't support the upgrade and downgrade the database.
+   so,to perform automatic migrations follow the following steps:
 
-2. ## update the Migrations>>env.py file o auto migrate the database.
-from models import Base
-target_database = Base.metadata
 
-4. # Perform the initial migrations
-alembic revision --autogenerate -m 'initials'
+1. To create Migration folder
+    ```
+    python -m alembic init migrations
+    ```
+2. Update the sqlalchemy.url into alembic.ini file
+    ```
+    sqlalchemy.url = mysql+pymysql://user:pass@host/db_name
+    ```
 
-5. # Apply the changes into the database (upgrade the database)
-alembic upgrade head
-   # To downgrade the database if required
-   alembic downgrade -1
+3. update the Migrations>>env.py file o auto migrate the database.
+    ```
+    from models import Base 
+    target_database = Base.metadata
+    ```
+
+4. Perform the initial migrations
+    ```
+    alembic revision --autogenerate -m 'initials'
+    ```
+
+5. Apply the changes into the database (upgrade the database)
+    ```
+    alembic upgrade head
+    ```
+
+6. To downgrade the database if required
+    ```
+    alembic downgrade -1
+    ```
 
 ## Run the server in development mode
  
 Add environment variables (given in .env) by running following command in cmd/terminal:
 
 Run the server
-```
-python asgi.py
-```
+   ```
+   python asgi.py
+   ```
 Browse Swagger API Doc at: http://localhost:8000/docs
 Browse  Redoc at: http://localhost:8000/redoc
 
@@ -74,3 +166,10 @@ Browse  Redoc at: http://localhost:8000/redoc
 
 * 0.1
     * Work in progress
+
+   
+<!-- MARKDOWN LINKS & IMAGES -->
+[Python]: https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=Blue
+[Python-url]: https://docs.python.org/3.10/
+[FastAPI]: https://img.shields.io/badge/FastAPI-20232A?style=for-the-badge&logo=fastapi&logoColor=009485
+[FastAPI-url]: https://fastapi.tiangolo.com/

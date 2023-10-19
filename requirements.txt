@@ -1,18 +1,97 @@
-
+aiohttp==3.8.6
+aiosignal==1.3.1
+aniso8601==9.0.1
+annotated-types==0.6.0
+anyio==3.7.1
+async-timeout==4.0.3
+attrs==23.1.0
+bcrypt==4.0.1
+blinker==1.6.2
+boto3==1.28.62
+botocore==1.31.62
+cachetools==5.3.1
+certifi==2023.7.22
+charset-normalizer==3.3.0
+click==8.1.7
+colorama==0.4.6
+dataclasses-json==0.6.1
+decorator==4.4.2
+dnspython==2.4.2
+exceptiongroup==1.1.3
 fastapi==0.85.1
+fastapi-utils==0.2.1
+fastapi-versioning==0.10.0
+filelock==3.12.4
+Flask==2.3.2
+Flask-RESTful==0.3.10
+frozenlist==1.4.0
+fsspec==2023.9.2
+greenlet==3.0.0
+h11==0.14.0
+httplib2==0.22.0
+huggingface-hub==0.17.3
+idna==3.4
+imageio==2.31.1
+imageio-ffmpeg==0.4.8
+InstructorEmbedding==1.0.1
+itsdangerous==2.1.2
+Jinja2==3.1.2
+jmespath==1.0.1
+joblib==1.3.2
+jsonpatch==1.33
+jsonpointer==2.4
+langchain==0.0.311
+langsmith==0.0.43
+Mako==1.2.4
+MarkupSafe==2.1.3
+marshmallow==3.20.1
+moviepy==1.0.3
+mpmath==1.3.0
+multidict==6.0.4
+mypy-extensions==1.0.0
+networkx==3.1
+nltk==3.8.1
+numpy==1.26.0
+openai==0.28.1
+packaging==23.1
+passlib==1.7.4
+pgvector==0.2.3
+Pillow==10.0.1
+proglog==0.1.10
+protobuf==4.24.4
+psycopg2-binary==2.9.9
+pyasn1==0.5.0
+pyasn1-modules==0.3.0
+pydantic==1.10.13
+pydantic_core==2.10.1
+PyMySQL==1.1.0
+pyparsing==3.1.1
+python-dateutil==2.8.2
+python-dotenv==1.0.0
+python-ffmpeg==2.0.4
+python-multipart==0.0.6
+pytz==2023.3
+PyYAML==6.0.1
+redis==5.0.0
+regex==2023.10.3
+requests==2.31.0
+rq==1.15.1
+rsa==4.9
+sentence-transformers==2.2.2
+sentencepiece==0.1.99
+six==1.16.0
+sniffio==1.3.0
+SQLAlchemy==1.4.49
+starlette==0.20.4
+sympy==1.12
+tenacity==8.2.3
+threadpoolctl==3.2.0
+tqdm==4.66.1
+transformers==4.34.0
+typing-inspect==0.9.0
+typing_extensions==4.8.0
+uritemplate==4.1.1
+urllib3==2.0.6
 uvicorn==0.23.2
-# fastapi["all"]
-# annotated-types==0.5.0
-# python-dotenv==0.21.0
-# anyio==3.7.1
-# click==8.1.7
-# colorama==0.4.6
-# exceptiongroup==1.1.3
-
-# h11==0.14.0
-# idna==3.4
-# pydantic==1.10.2
-# pydantic_core==2.6.1
-# sniffio==1.3.0
-# typing_extensions==4.7.1
-
+Werkzeug==2.3.6
+yarl==1.9.2
