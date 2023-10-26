@@ -3,6 +3,7 @@
 alembic.ini
 changes_note.txt
 migrations/
+github/
 .dbdata/
 app.dp
 

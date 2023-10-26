@@ -3,10 +3,10 @@
 <div align="center">
    <img src="images/python_logo.png" alt="Logo" width="80" height="80">
 
-<h3 align="center">Python Fast API boilerplate</h3>
+<h3 align="center">Python Fast API Boilerplate</h3>
 
   <p align="center">
-      Fast API boiler plate project 
+      Fast API Boilerplate Project 
   </p>
 </div>
 
@@ -29,7 +29,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -114,42 +113,6 @@ Requirement of Project
    ```
    python -m pip install --upgrade pip==22.1.2
    ```
-
-### Use the alembic to Upgrade/Downgrade the database in the FastAPI
-  Note: Because by default Fastapi is provide only initial migrations. 
-  It doesn't support the upgrade and downgrade the database.
-   so,to perform automatic migrations follow the following steps:
-
-
-1. To create Migration folder
-    ```
-    python -m alembic init migrations
-    ```
-2. Update the sqlalchemy.url into alembic.ini file
-    ```
-    sqlalchemy.url = mysql+pymysql://user:pass@host/db_name
-    ```
-
-3. update the Migrations>>env.py file o auto migrate the database.
-    ```
-    from models import Base 
-    target_database = Base.metadata
-    ```
-
-4. Perform the initial migrations
-    ```
-    alembic revision --autogenerate -m 'initials'
-    ```
-
-5. Apply the changes into the database (upgrade the database)
-    ```
-    alembic upgrade head
-    ```
-
-6. To downgrade the database if required
-    ```
-    alembic downgrade -1
-    ```
 
 ## Run the server in development mode
  
