@@ -29,6 +29,6 @@ class StandardResponse:
 
     @property
     def make(self) -> dict:
-        self.status = constant.STATUS_SUCCESS if self.status in [201, 200] else constant.STATUS_FAIL
+        self.status = constant.STATUS_SUCCESS if self.status_code in [201, 200] else constant.STATUS_FAIL
         response = {'status': self.status, 'data': self.data, 'message': self.message}
         return JSONResponse(content=response, status_code=self.status_code)

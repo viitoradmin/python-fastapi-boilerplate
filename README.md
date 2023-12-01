@@ -58,7 +58,7 @@ To get a local copy up and running follow these simple steps.
 Requirement of Project
 * Install Python 
   ```sh
-  Python-Version : 3.10.13
+  Python-Version : 3.11.0
   ```
 * Create python virtual environment
   ```sh
@@ -73,7 +73,7 @@ Requirement of Project
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/viitoradmin/python-fastapi-boilerplate
+   git clone https://github.com/viitoradmin/python-fastapi-boilerplate/tree/feature/fastapi
    ```
 2. Upgrade pip version
     ```sh
@@ -92,7 +92,7 @@ Requirement of Project
 
 1. Create python virtual environment
    ```
-   conda create --name venv python=3.10.12
+   conda create --name venv python=3.11
    ```
 
 2. Activate the python virtual environment
@@ -160,7 +160,12 @@ Run the server
    python asgi.py
    ```
 Browse Swagger API Doc at: http://localhost:8000/docs
+
 Browse  Redoc at: http://localhost:8000/redoc
+
+Browse Swagger API Doc for version v1 at: http://localhost:8000/v1/docs
+
+Browse Swagger API Doc for version v2 at: http://localhost:8000/v2/docs
 
 ## Release History
 
