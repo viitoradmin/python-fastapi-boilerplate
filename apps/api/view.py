@@ -1,5 +1,4 @@
 from fastapi import status
-from fastapi_utils.cbv import cbv
 from fastapi import APIRouter
 from apps.constant import constant
 from fastapi_versioning import version
@@ -10,13 +9,12 @@ defaultrouter = APIRouter()
 router = APIRouter()
 
 ## Define verison 1 API's here
-@cbv(defaultrouter)
 class UserCrudApi():
     """This class is for user's CRUD operation with version 1 API's"""
     
     @defaultrouter.get('/list/user')
     @version(1)
-    async def list_user(self):
+    async def list_user():
         """This API is for list user.
         Args: None
         Returns: 
@@ -29,7 +27,7 @@ class UserCrudApi():
     
     @defaultrouter.post('/create/user')
     @version(1)
-    async def create_user(self):
+    async def create_user():
         """This API is for create user.
         Args: 
             body(dict) : user's data
@@ -43,7 +41,6 @@ class UserCrudApi():
 
 
 ## Define version 2 API's here
-@cbv(router)
 class UserVersionApi():
     @router.get("/list")
     @version(2)
