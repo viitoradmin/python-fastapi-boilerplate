@@ -1,57 +1,101 @@
+""" View file includes endpoint and websocket"""
+import os
 from fastapi import status
-from fastapi import APIRouter
-from apps.constant import constant
 from fastapi_versioning import version
+from websockets.exceptions import ConnectionClosed
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, File, UploadFile
 from apps.utils.standard_response import StandardResponse
+from apps.utils.wsoc_conn_manager import ConnectionManager
+from apps.constant import constant
+from config.project_path import MEDIA_ROOT
 
-## Load API's
-defaultrouter = APIRouter()
+# Create APIRouter instance
 router = APIRouter()
 
-## Define verison 1 API's here
-class UserCrudApi():
-    """This class is for user's CRUD operation with version 1 API's"""
-    
-    @defaultrouter.get('/list/user')
-    @version(1)
-    async def list_user():
-        """This API is for list user.
-        Args: None
-        Returns: 
-            response: will return list."""
-        try:
-            data = {"List:" : "Hello there, welcome to fastapi bolierplate"}
-            return StandardResponse(True, status.HTTP_200_OK, data, constant.STATUS_SUCCESS)
-        except Exception as e:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
-    
-    @defaultrouter.post('/create/user')
-    @version(1)
-    async def create_user():
-        """This API is for create user.
-        Args: 
-            body(dict) : user's data
-        Returns:
-            response: will return the user's data"""
-        try:
-            data = {"user": "user's data"}
-            return StandardResponse(True, status.HTTP_200_OK, data, constant.STATUS_SUCCESS)
-        except Exception as e:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
+# Create ConnectionManager instance for managing WebSocket connections
+manager = ConnectionManager()
 
 
-## Define version 2 API's here
-class UserVersionApi():
-    @router.get("/list")
-    @version(2)
-    async def get_list(self):
-        """ This API will list version 2 Api's
-        Args: None
-        Returns:
-            response: list 
-        """
-        try:
-            response = { "data": "User's list data" }
-            return StandardResponse(True, status.HTTP_200_OK, response, constant.STATUS_SUCCESS)
-        except Exception as e:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
+@router.post("/div")
+@version(2)
+async def process_user_input(num1: float, num2: float):
+    """
+    Sample Endpoint to perform division operation.
+
+    Args:
+        num1 (float): The numerator.
+        num2 (float): The denominator.
+
+    Returns:
+        StandardResponse: Response indicating success or failure with appropriate message.
+    """
+    try:
+        result = num1 / num2
+    except ZeroDivisionError as e:
+        return StandardResponse(
+            False, status.HTTP_400_BAD_REQUEST, "Division by zero is not allowed.", {
+                e}
+        )
+    else:
+        return StandardResponse(
+            True, status.HTTP_200_OK, "Division successful.", {
+                "result": result}
+        )
+
+
+@router.post("/upload")
+async def upload_file(file: UploadFile = File(...)):
+    """
+    Endpoint to upload a file.
+
+    Args:
+        file (UploadFile): The file to be uploaded.
+
+    Returns:
+        StandardResponse: Response indicating success or failure with appropriate message.
+    """
+    try:
+        # Save the uploaded file in the backend
+        file_path = os.path.join(MEDIA_ROOT, file.filename)
+        with open(file_path, "wb") as buffer:
+            buffer.write(await file.read())
+        return StandardResponse(
+            True, status.HTTP_200_OK, "File has been Uploaded Successfully..!", constant.STATUS_SUCCESS
+        )
+    except Exception as e:
+        # Return error response if an exception occurs during file upload
+        return StandardResponse(
+            False, status.HTTP_500_INTERNAL_SERVER_ERROR, str(
+                e), constant.ERROR_MSG
+        )
+
+
+@router.websocket("/ws/{user_id}")
+async def websocket_endpoint(websocket: WebSocket, user_id: str):
+    """
+    WebSocket endpoint for handling chat communication.
+
+    Args:
+        websocket (WebSocket): WebSocket connection instance.
+        user_id (int): User ID associated with the WebSocket connection.
+    """
+    # Connect the WebSocket
+    await manager.connect(websocket, user_id)
+    try:
+        while True:
+            # Receive text message from the WebSocket
+            data = await websocket.receive_text()
+            if data.lower() == "close":
+                await manager.send_ping_message(websocket)
+            else:
+                print(f'CLIENT says - {data}')
+                # Send a personal message to the connected client
+                await manager.send_personal_message(
+                    f"You wrote: {data}", websocket, user_id
+                )
+    except WebSocketDisconnect as e:
+        manager.disconnect(websocket)
+        print('\n\n  Client disconnected', e)
+    except ConnectionClosed as e:
+        manager.disconnect(websocket)
+        print('\n\n  Client disconnected', e)

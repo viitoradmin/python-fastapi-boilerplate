@@ -48,6 +48,74 @@ FastAPI boilerplate provides a simple basic structure for project creation with 
 Instructions for setting up project locally.
 To get a local copy up and running follow these simple steps.
 
+## Repository Structure
+
+```sh
+├── apps
+│   ├── api
+│   │   ├── __init__.py
+│   │   └── view.py
+│   ├── constant
+│   │   ├── __init__.py
+│   │   └── constant.py
+│   ├── ml_backend
+│   │   ├── __init__.py
+│   │   ├── inference.py
+│   │   ├── ml_utils
+│   │   │   ├── __init__.py
+│   │   │   └── ml_helper.py
+│   │   ├── ml_config
+│   │   │   ├── ml_config.yaml
+│   │   ├── ml_models
+│   │   │   ├── __init__.py
+│   │   │   └── your_model_files_here.pkl
+│   │   ├── ml_tools
+│   │   │   ├── llm # directory
+│   │   │   ├── imagegen # directory
+│   │   │   ├── RAG # directory
+│   │   │   ├── csvreader # directory
+│   │   │   └── data_processing # directory
+│   │   └── ml_experiment  # add into gitignore
+│   │       ├── notebooks # directory
+│   │       ├── test-script.py # directory
+│   │       └── results # directory
+│   ├── utils
+│   │   ├── __init__.py
+│   │   ├── helper.py
+│   │   ├── message.py
+│   │   └── standard_response.py
+│   └── __init__.py
+├── config
+│   ├── __init__.py
+│   ├── cors.py
+│   ├── env_config.py
+│   └── project_path.py
+├── data
+│   ├── __init__.py
+│   ├── your_data_files_here.csv
+│   └── other_data_folders_here
+├── images
+│   ├── Logo1.webp
+│   └── python_logo2.png
+├── models
+│   ├── __init__.py
+│   └── your_other_model_files_here.pth
+├── tests
+│   ├── __init__.py
+│   └── your_test_files_here.py
+├── static
+│   ├── __init__.py
+│   └── your_static_files_here.css
+├── templates
+│   ├── __init__.py
+│   └── your_html_template_files_here.html
+├── asgi.py
+├── README.md
+└── requirements.txt
+```
+
+---
+
 ## Install + configure the project
 
 ### 1. Linux
