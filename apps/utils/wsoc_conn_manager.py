@@ -28,13 +28,13 @@ class ConnectionManager():
         self, message: str, websocket: WebSocket, user_id: int
     ):
         """Send a personal message to a WebSocket."""
-        if user_id != self.user_id():
-            # self.create_history()
+        # if user_id != self.user_id():
+        #     self.create_history()
 
-            # run the inference model on latest user-input
-            inf_response = ml_inference(message)
-            # to send the json over websocket to client
-            await websocket.send_text(json.dumps(inf_response))
+        # run the inference model on latest user-input
+        inf_response = ml_inference(message)
+        # to send the json over websocket to client
+        await websocket.send_text(json.dumps(inf_response))
 
     async def send_close_message(self, websocket: WebSocket):
         """Send a close message to a WebSocket."""
