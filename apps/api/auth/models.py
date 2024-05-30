@@ -1,7 +1,9 @@
-from fastapi import FastAPI
-from config.database import Base
+"""This module contains database model implementations."""
 from datetime import datetime
-from sqlalchemy import Column, String, Integer, DateTime
+
+from sqlalchemy import Column, DateTime, Integer, String
+
+from config.database import Base
 
 
 class Users(Base):

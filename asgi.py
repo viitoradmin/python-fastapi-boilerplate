@@ -1,5 +1,8 @@
+"""This module contains entry point for an application."""
 import os
+
 import uvicorn
+
 from apps.__init__ import app
 from config.env_config import load_dotenv
 

@@ -1,3 +1,4 @@
+"""This module contains project path information."""
 from os.path import abspath, basename, dirname, join
 
 

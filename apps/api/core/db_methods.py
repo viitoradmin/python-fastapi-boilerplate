@@ -1,16 +1,18 @@
+"""This module contains databse methods."""
 from fastapi import Depends
-from config import database
-from apps.constant import constant
 from sqlalchemy.orm import Session
+
+from apps.constant import constant
+from config import database
 
 getdb = database.get_db
 
 class BaseMethods():
     """This class provides basic DB methods"""
-    
+
     def __init__(self, model):
         self.model = model
-    
+
     def save(self, validate_data, db: Session = Depends(getdb)):
         """this function saves the object to the database for the given model
         Args:
@@ -29,8 +31,9 @@ class BaseMethods():
             db.rollback()
             db.close()
             return constant.STATUS_FALSE
-    
+
     def find_by_uuid(self, db: Session = Depends(getdb)):
         """This function is used to find users."""
-        return db.query(self.model).filter(self.model.deleted_at == None).all()
+        return db.query(self.model).filter(self.model.deleted_at == constant.STATUS_NULL).all()
+
     

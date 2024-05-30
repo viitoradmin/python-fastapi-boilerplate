@@ -1,4 +1,4 @@
-from fastapi import FastAPI 
+"""This module contains CORS headers."""
 from starlette.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 

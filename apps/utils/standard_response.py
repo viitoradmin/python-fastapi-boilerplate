@@ -1,5 +1,8 @@
-from apps.constant import constant
+"""This module contains standard response class."""
 from fastapi.responses import JSONResponse
+
+from apps.constant import constant
+
 
 class StandardResponse:
     """This class is universal to return standard API responses

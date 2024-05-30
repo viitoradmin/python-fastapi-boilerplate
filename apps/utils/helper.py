@@ -1,11 +1,12 @@
+"""This moduel is used to convert password into hash string."""
 from passlib.context import CryptContext
 
 class PasswordUtils():
     """This class is used to manage password management"""
-    
+
     def __init__(self):
         self.pwd_context = CryptContext(schemes=['bcrypt'], deprecated="auto")
-    
+
     def hash_password(self, password: str):
         """
         This function is used to hash password
@@ -15,4 +16,4 @@ class PasswordUtils():
         Returns: 
             Hash of the password
         """
-        return self.pwd_context.hash(password)       
+        return self.pwd_context.hash(password)

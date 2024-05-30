@@ -1,3 +1,5 @@
+"""This module contains constant messages."""
+
 STATUS_SUCCESS = "success"
 STATUS_FAIL = "fail"
 STATUS_ERROR = "error"
