@@ -5,7 +5,7 @@ from starlette.config import Config
 
 # Environment Variables
 current_file_dir = os.path.dirname(os.path.realpath(__file__))
-env_path = os.path.join(current_file_dir, "..", "..", ".env.example")
+env_path = os.path.join(current_file_dir, "..", "..", ".env")
 config = Config(env_path)
 
 
@@ -21,6 +21,7 @@ class AppSettings(BaseSettings):
 
 class LLMSettings(BaseSettings):
     LLM_MODEL: str = config("LLM_MODEL", default=None)
+    OPENAI_API_KEY: str = config("OPENAI_API_KEY")
 
 
 class EnvironmentOption(Enum):

@@ -9,5 +9,4 @@ async def hello_world():
 
 @router.post("/chat")
 async def chat(user_input: str):
-    # TODO: Complete the functionality here
-    pass
+    return generate_text(user_input=user_input)
