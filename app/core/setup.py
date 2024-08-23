@@ -1,7 +1,27 @@
 """This module is creating Fastapi app instance with docs and redoc requiremnts."""
 from fastapi import FastAPI
+from fastapi.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 
 # ---------------------application-----------------------
+def make_middleware() -> list[Middleware]:
+    """This function is creating middleware instance with required cors.
+
+    Returns:
+        Middleware: returns middleware instance.
+    """
+    middleware =  [
+        Middleware(
+            CORSMiddleware,
+            allow_origins=["*"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    ]
+    return middleware
+
+
 def create_application(router, settings, **kwargs) -> FastAPI:
     """
     Creates and configures a FastAPI application based on the provided settings.
@@ -20,6 +40,7 @@ def create_application(router, settings, **kwargs) -> FastAPI:
     """
 
     application = FastAPI(title=settings.APP_NAME,
+                          middleware=make_middleware(),
                           docs_url=None if settings.ENV_SERVER == settings.PRODUCTION_SERVER else "/docs",
                           redoc_url=None if settings.ENV_SERVER == settings.PRODUCTION_SERVER else "/redoc")
     application.include_router(router)
