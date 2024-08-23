@@ -1,3 +1,4 @@
+"""This module is an entry point for an application to run main application."""
 import uvicorn
 from app.core.config import settings
 from app import app

@@ -1,3 +1,4 @@
+"""This moduele contains all the required configurations details for the current project."""
 import os
 from enum import Enum
 from pydantic_settings import BaseSettings
@@ -10,6 +11,7 @@ config = Config(env_path)
 
 
 class AppSettings(BaseSettings):
+    """Class representing the configuration related to the application."""
     APP_NAME: str = config("APP_NAME", default="Fast API Boilerplate")
     API_VERSION: str = config("API_VERSION", default="v1")
     APP_DESCRIPTION: str | None = config("APP_DESCRIPTION", default=None)
@@ -20,24 +22,29 @@ class AppSettings(BaseSettings):
 
 
 class LLMSettings(BaseSettings):
+    """Class representing configuration related to language model settings."""
     LLM_MODEL: str = config("LLM_MODEL", default=None)
     OPENAI_API_KEY: str = config("OPENAI_API_KEY")
 
 
 class EnvironmentOption(Enum):
+    """Class representing an environment options value."""
     LOCAL = "local"
     STAGING = "staging"
     PRODUCTION = "production"
 
 
 class EnvironmentSettings(BaseSettings):
+    """Class representing configuration related to the application's environment."""
     ENVIRONMENT: EnvironmentOption = config("ENVIRONMENT", default="local")
     SERVER_HOST: str = config("SERVER_HOST", default=None)
     SERVER_PORT: str = config("SERVER_PORT", default=None)
+    ENV_SERVER: str = config("ENV_SERVER", default=None)
 
 
 
 class Constants:
+    """Class defines constant values used across the application."""
     # Standard Response Status
     STATUS_SUCCESS = "success"       # 200 OK
     STATUS_FAIL = "fail"             # 400 Bad Request / 422 Unprocessable Entity
@@ -58,10 +65,12 @@ class Constants:
     STATUS_CONFLICT = "conflict"     # 409 Conflict
     STATUS_UNPROCESSABLE_ENTITY = "unprocessable_entity" # 422 Unprocessable Entity
     STATUS_TOO_MANY_REQUESTS = "too_many_requests" # 429 Too Many Requests
+    PRODUCTION_SERVER = "production"
 
 
 
 class Messages:
+    """Class contains various messages and labels used in the application."""
     # Standard Response Messages
     SUCCESS = "Operation completed successfully."
     FAIL = "The request could not be processed due to client error."
@@ -99,6 +108,7 @@ class Settings(
     Constants,
     Messages
     ):
+    """A comprehensive settings class that inherits configurations from multiple base classes."""
     pass
 
 

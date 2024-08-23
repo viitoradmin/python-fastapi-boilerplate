@@ -1,11 +1,5 @@
-from fastapi import FastAPI, APIRouter
-from .config import (
-    AppSettings,
-    EnvironmentOption,
-    EnvironmentSettings,
-    LLMSettings,
-    settings
-)
+"""This module is creating Fastapi app instance with docs and redoc requiremnts."""
+from fastapi import FastAPI
 
 # ---------------------application-----------------------
 def create_application(router, settings, **kwargs) -> FastAPI:
@@ -25,7 +19,9 @@ def create_application(router, settings, **kwargs) -> FastAPI:
 
     """
 
-    application = FastAPI()
+    application = FastAPI(title=settings.APP_NAME,
+                          docs_url=None if settings.ENV_SERVER == settings.PRODUCTION_SERVER else "/docs",
+                          redoc_url=None if settings.ENV_SERVER == settings.PRODUCTION_SERVER else "/redoc")
     application.include_router(router)
 
     return application

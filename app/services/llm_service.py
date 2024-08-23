@@ -1,3 +1,4 @@
+"""This module contains functions for LLM."""
 import json
 from openai import OpenAI
 from fastapi import status
@@ -8,6 +9,14 @@ from app.core.config import settings
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 def generate_text(user_input: str):
+    """This function generates a text representation of the user input.
+
+    Args:
+        user_input (str): String representation of the user input
+
+    Returns:
+        _type_: Standard Response 200 if successful else 500
+    """
     try:
         completion = client.beta.chat.completions.parse(
             model=settings.LLM_MODEL,
@@ -26,7 +35,7 @@ def generate_text(user_input: str):
             data=json.loads(message),
             message=settings.SUCCESS
         ).to_json_response()
-    
+
     except Exception as err:
         return StandardResponse(
             status=settings.STATUS_ERROR,

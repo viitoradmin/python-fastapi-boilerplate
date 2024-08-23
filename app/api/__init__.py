@@ -1,3 +1,4 @@
+"""This module contains API routes for interacting with application."""
 from fastapi import APIRouter
 from app.core.config import settings
 from app.api.v1 import router as v1_router

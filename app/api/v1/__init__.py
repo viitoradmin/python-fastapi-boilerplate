@@ -1,3 +1,5 @@
+"""This module contains API routes for interacting with application."""
+
 from fastapi import APIRouter
 
 from app.api.v1.inference import router as inference_router
