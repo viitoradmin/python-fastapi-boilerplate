@@ -1,4 +1,3 @@
-"""This module contains configuration information."""
 import os
 from os.path import join
 
@@ -17,3 +16,7 @@ DATABASE_USER = os.environ.get("DATABASE_USER")
 DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
 DATABASE_HOST = os.environ.get("DATABASE_HOST")
 DATABASE_PORT = os.environ.get("DATABASE_PORT")
+
+
+## WKHTMLOPDF details ##
+WKHTMLOPDF_PATH = os.environ.get("WKHTMLOPDF_PATH")

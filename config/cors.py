@@ -1,9 +1,8 @@
-"""This module contains CORS headers."""
-from starlette.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware import Middleware
 
+from core.utils import constant_variable
 
-##### CORS configuration #####
 CORS_ALLOW_ORIGINS = ["*"]
 
 CORS_ALLOW_METHODS = ["*"]
@@ -14,8 +13,8 @@ middleware = [
     Middleware(
         CORSMiddleware,
         allow_origins=CORS_ALLOW_ORIGINS,
-        allow_credentials=True,
+        allow_credentials=constant_variable.STATUS_TRUE,
         allow_methods=CORS_ALLOW_METHODS,
-        allow_headers=CORS_ALLOW_HEADERS
+        allow_headers=CORS_ALLOW_HEADERS,
     )
 ]

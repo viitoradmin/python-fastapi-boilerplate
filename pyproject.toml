@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "fastapi-product-boilerplate"
+version = "0.1.0"
+description = ""
+authors = ["darshan-VC <darshan.vankawala@viitor.cloud>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "0.111.0"
+sqlalchemy = "2.0.30"
+uvicorn = "^0.32.1"
+slowapi = "^0.1.9"
+redis = "^5.2.0"
+itsdangerous = "^2.2.0"
+cryptography = "^44.0.0"
+passlib = "^1.7.4"
+pytz = "^2024.2"
+bleach = "^6.2.0"
+fastapi-mail = "^1.4.2"
+aiomysql = "^0.2.0"
+boto3 = "^1.35.76"
+pdfkit = "^1.0.0"
+logging = "^0.4.9.6"
+update = "^0.0.1"
+anyio = "^4.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

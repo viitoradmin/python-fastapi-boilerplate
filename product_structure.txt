@@ -1,0 +1,90 @@
+python-fastapi-boilerplate/
+├─ .env
+├─ .env-sample
+├─ .github/
+│  └─ workflow/
+│     ├─ ci.yml
+│     ├─ code_quality.yml
+│     ├─ security.yml
+│     └─ setup_environment.yml
+├─ .gitignore
+├─ .vscode/
+│  ├─ launch.json
+│  └─ settings.json
+├─ app.log
+├─ apps/
+│  ├─ server.py
+│  ├─ v1/
+│  │  ├─ api/
+│  │  │  ├─ auth/
+│  │  │  │  ├─ models/
+│  │  │  │  │  ├─ attribute.py
+│  │  │  │  │  ├─ methods/
+│  │  │  │  │  │  ├─ method1.py
+│  │  │  │  │  │  └─ __init__.py
+│  │  │  │  │  └─ model.py
+│  │  │  │  ├─ response.py
+│  │  │  │  ├─ schema.py
+│  │  │  │  ├─ serializer.py
+│  │  │  │  ├─ services/
+│  │  │  │  │  ├─ service.py
+│  │  │  │  │  └─ __init__.py
+│  │  │  │  ├─ test.py
+│  │  │  │  ├─ view.py
+│  │  │  │  ├─ __init__.py
+│  │  │  └─ __init__.py
+│  │  └─ __init__.py
+│  ├─ __init__.py
+├─ asgi.py
+├─ assets/
+│  ├─ static/
+│  │  └─ images/
+│  │     └─ python_logo.png
+│  └─ template/
+├─ config/
+│  ├─ aws_config.py
+│  ├─ cors.py
+│  ├─ db_config.py
+│  ├─ env_config.py
+│  ├─ logging_config.py
+│  ├─ mail_config.py
+│  ├─ project_path.py
+│  ├─ redis_config.py
+│  ├─ session_config.py
+│  ├─ __init__.py
+├─ core/
+│  ├─ db/
+│  │  ├─ mixins/
+│  │  │  ├─ timestamp_mixin.py
+│  │  │  └─ __init__.py
+│  │  ├─ transactional.py
+│  │  └─ __init__.py
+│  ├─ exceptions.py
+│  ├─ s3/
+│  │  ├─ aws_s3.py
+│  │  ├─ s3_paths_config.json
+│  │  └─ __init__.py
+│  ├─ security.py
+│  ├─ session.py
+│  ├─ utils/
+│  │  ├─ constant_variable.py
+│  │  ├─ db_method.py
+│  │  ├─ email_service.py
+│  │  ├─ helper.py
+│  │  ├─ html_to_pdf.py
+│  │  ├─ message_variable.py
+│  │  ├─ standard_response.py
+│  │  ├─ validation.py
+│  │  ├─ __init__.py
+│  ├─ __init__.py
+├─ log_service/
+│  ├─ system_logger.py
+│  ├─ __init__.py
+├─ media/
+├─ middleware/
+│  ├─ s3_middleware.py
+│  ├─ session_middleware.py
+│  ├─ __init__.py
+├─ poetry.lock
+├─ pyproject.toml
+└─ README.md
