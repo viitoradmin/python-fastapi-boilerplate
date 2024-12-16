@@ -24,6 +24,7 @@ pdfkit = "^1.0.0"
 logging = "^0.4.9.6"
 update = "^0.0.1"
 anyio = "^4.7.0"
+click = "^8.1.7"
 
 
 [build-system]

@@ -265,3 +265,6 @@ coverage.xml
 
 # .key
 SECRET.key
+
+# poetry lock
+poetry.lock
