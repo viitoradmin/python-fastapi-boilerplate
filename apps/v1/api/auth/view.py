@@ -3,8 +3,9 @@ from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from apps.v1.api.auth import schema
-from apps.v1.api.auth.service import UserAuthService
-from apps.constant import constant
+from core.utils import message_variable
+from apps.v1.api.auth.services.service import UserAuthService
+from core.utils import constant_variable as constant
 from core.utils.standard_response import StandardResponse
 from config import db_config
 
@@ -25,7 +26,7 @@ class UserCrudApi():
             response = UserAuthService().get_user_service(db)
             return response
         except Exception:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
+            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, message_variable.GENERAL_TRY_AGAIN)
 
     @router.post('/create/user')
     async def create_user(body: schema.UserAuth,
@@ -41,4 +42,4 @@ class UserCrudApi():
             response = UserAuthService().create_user_service(db, body)
             return response
         except Exception:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
+            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, message_variable.GENERAL_TRY_AGAIN)

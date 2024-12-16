@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 # from core.config import config
+from apps.v1.api.auth.view import router
 from config import project_path, LoggingConfig
 from core import CustomException
 from core.utils import constant_variable
@@ -13,8 +14,8 @@ from middleware import S3PathMiddleware
 
 
 def init_routers(app_: FastAPI) -> None:
-    pass
-    # app_.include_router(user_router)
+    # pass
+    app_.include_router(router)
 
 
 def init_listeners(app_: FastAPI) -> None:
