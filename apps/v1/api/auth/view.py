@@ -104,7 +104,6 @@ class UsersAuthentication:
         Args: None
         Returns:
             response: will return users list."""
-        current_users = AuthBackend().authenticate()
         response = await email_verification_service.EmailVerificationService().user_verification_service(
             db, body
         )

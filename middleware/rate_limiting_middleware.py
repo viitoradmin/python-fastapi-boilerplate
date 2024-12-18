@@ -28,7 +28,9 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
 
         # Enforce rate limiting
         if self.request_count >= self.rate_limit:
-            return JSONResponse(content={"error": "Rate limit exceeded"}, status_code=429)
+            return JSONResponse(
+                content={"error": "Rate limit exceeded"}, status_code=429
+            )
 
         # Increment request count
         self.request_count += 1
