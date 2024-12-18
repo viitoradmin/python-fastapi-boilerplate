@@ -1,5 +1,5 @@
 from fastapi import Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from config import db_config
 from core.utils import constant_variable
@@ -13,32 +13,33 @@ class DataBaseMethod:
     def __init__(self, model):
         self.model = model
 
-    def save(self, validate_data, db: Session = Depends(getdb)):
-        """This function creates new object
+    async def save(self, validate_data, db: AsyncSession = Depends(getdb)):
+        """This function creates a new object asynchronously.
 
         Arguments:
             self(db): database session
-            validate_data (dict): validate data
+            validate_data (dict): validated data to be saved
 
         Returns:
-            Returns the creates object
+            Returns the status of the operation (True/False).
         """
         try:
-            db.add(validate_data)
-            db.flush()  # Changed this to a flush
-            db.refresh(validate_data)
+            async with db.begin():  # Start a transaction asynchronously
+                db.add(validate_data)  # Add the object to the session
+                await db.commit()
+                await db.flush()  # Asynchronously flush the changes to the database
             return constant_variable.STATUS_TRUE
         except Exception as err:
             print(err)
-            db.rollback()
+            # Rollback is handled automatically when the transaction is not committed.
             return constant_variable.STATUS_FALSE
 
-    def save_all(self, validate_data: list, db: Session = Depends(getdb)):
+    async def save_all(self, validate_data: list, db: AsyncSession = Depends(getdb)):
         """Saves bulk data in the database."""
         try:
             db.add_all(validate_data)
-            db.flush()  # Changed this to a flush
-            db.refresh(validate_data)
+            await db.commit()
+            await db.flush()
             return constant_variable.STATUS_TRUE
         except Exception as err:
             print(err)
@@ -46,12 +47,14 @@ class DataBaseMethod:
             db.close()
             return constant_variable.STATUS_FALSE
 
-    def bulk_insert_mapping(self, validate_data: dict, db: Session = Depends(getdb)):
+    async def bulk_insert_mapping(
+        self, validate_data: dict, db: AsyncSession = Depends(getdb)
+    ):
         """Saves bulk data in the database with its mapping"""
         try:
             db.bulk_insert_mappings(self.model, validate_data)
-            db.flush()  # Changed this to a flush
-            db.refresh(validate_data)
+            await db.commit()
+            await db.flush()
             return constant_variable.STATUS_TRUE
         except Exception as err:
             print(err)
@@ -59,7 +62,7 @@ class DataBaseMethod:
             db.close()
             return constant_variable.STATUS_FALSE
 
-    def destroy(self, instance: object, db: Session = Depends(getdb)):
+    async def destroy(self, instance: object, db: AsyncSession = Depends(getdb)):
         """This function take a ID and destroy the object
 
         Arguments:
@@ -72,8 +75,8 @@ class DataBaseMethod:
         """
         try:
             db.delete(instance=instance)
-            db.flush()  # Changed this to a flush
-            db.refresh(instance)
+            await db.commit()
+            await db.flush()
             return constant_variable.STATUS_TRUE
         except Exception as e:
             return constant_variable.STATUS_FALSE

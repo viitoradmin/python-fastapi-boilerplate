@@ -9,6 +9,10 @@ SUCCESS_PASSWORD_CHANGED = "Password changed successfully!"
 SUCCESS_VERIFICATION_SENT = "Verification email sent successfully!"
 SUCCESS_OPERATION_COMPLETED = "Operation completed successfully!"
 SUCCESS_FILE_UPLOADED = "File uploaded successfully!"
+EMAIL_ALLREADY_EXISTS = "Email already exists!"
+SUCCESS_USER_LOGIN = "User logged in successfully!"
+SUCCESS_RESET_LINK = "User reset link sent successfully!"
+SUCCESS_USER_VERIFIED = "User verified successfully!"
 
 ## Error message ##
 ERROR_USER_CREATE = "Error occurred while creating the user!"
@@ -21,6 +25,10 @@ ERROR_PASSWORD_RESET = "Error occurred while resetting the password!"
 ERROR_FILE_UPLOAD = "Error occurred while uploading the file!"
 ERROR_VALIDATION = "Validation failed. Please check the input!"
 ERROR_INTERNAL_SERVER = "An internal server error occurred!"
+GENERIC_ERROR = "An error ocured while saving data"
+SOMETHING_WENT_WRONG = "Woops, something's not quite right, please try again!"
+INVALID_USER_CREDENTIAL = "Invalid user credentials!"
+INVALID_PROVIDER_TOKEN = "Invalid provider token!"
 
 ## Info message ##
 INFO_NO_RECORDS = "No records found!"
@@ -40,6 +48,8 @@ VALIDATION_UNIQUE_FIELD = "{} must be unique!"
 VALIDATION_INVALID_EMAIL = "Invalid email address format!"
 VALIDATION_INVALID_DATE = "Invalid date format. Use YYYY-MM-DD!"
 VALIDATION_INVALID_FILE_TYPE = "Invalid file type. Allowed types are: {}!"
+INVALID_AUTH_TOKEN = "Invalid authentication token!"
+TOKEN_REQUIRED = "Token is required to perform this operation!"
 
 ## Generic error message ##
 GENERAL_PROCESSING = "Processing your request. Please wait..."

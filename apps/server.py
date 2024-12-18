@@ -6,7 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 # from core.config import config
-from apps.v1.api.auth.view import router
+from middleware.response_log_middleware import ResponseLogMiddleware
+from middleware.rate_limiting_middleware import RateLimitMiddleware
+from apps.v1.api.auth.view import authrouter
 from config import project_path, LoggingConfig
 from core import CustomException
 from core.utils import constant_variable
@@ -14,8 +16,9 @@ from middleware import S3PathMiddleware
 
 
 def init_routers(app_: FastAPI) -> None:
-    # pass
-    app_.include_router(router)
+    app_.include_router(
+        authrouter, prefix=f"{constant_variable.API_V1}/auth", tags=["Authentication"]
+    )
 
 
 def init_listeners(app_: FastAPI) -> None:
@@ -27,8 +30,7 @@ def init_listeners(app_: FastAPI) -> None:
             status_code=exc.status,
             content=content,
         )
-
-
+        
 def make_middleware() -> list[Middleware]:
     middleware = [
         Middleware(
@@ -41,6 +43,14 @@ def make_middleware() -> list[Middleware]:
         Middleware(
             S3PathMiddleware, config_path=f"{project_path.S3_ROOT}/s3_paths_config.json"
         ),
+        Middleware(
+            ResponseLogMiddleware
+        ),
+        Middleware(
+            RateLimitMiddleware,
+            rate_limit=constant_variable.RATE_LIMIT,
+            time_window=constant_variable.TIME_WINDOW
+        )
     ]
     return middleware
 
@@ -50,8 +60,8 @@ def make_middleware() -> list[Middleware]:
 
 def create_app() -> FastAPI:
     app_ = FastAPI(
-        title="Hide",
-        description="Hide API",
+        title="VC_Product Fastapi Boilerplate",
+        description="FastAPI",
         version="1.0.0",
         # docs_url=None if config.ENV == "production" else "/docs",
         # redoc_url=None if config.ENV == "production" else "/redoc",
