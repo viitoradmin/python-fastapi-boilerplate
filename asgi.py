@@ -31,7 +31,7 @@ def main(env: str, debug: bool):
         app="asgi:app",
         host=str(os.environ.get("SERVER_HOST", "localhost")),
         port=int(os.environ.get("SERVER_PORT", 8000)),
-        reload=bool(os.environ.get("SERVER_DEBUG", constant_variable.STATUS_FALSE)),
+        reload=bool(os.environ.get("SERVER_DEBUG", constant_variable.STATUS_TRUE)),
         workers=1,
         log_config=LoggingConfig().get_config(),
     )

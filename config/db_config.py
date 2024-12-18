@@ -67,3 +67,9 @@ async def session_factory() -> AsyncGenerator[AsyncSession, None]:
         yield _session
     finally:
         await _session.close()
+
+
+# Define FastAPI Dependencyasync def
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    async with session_factory() as session:
+        yield session
