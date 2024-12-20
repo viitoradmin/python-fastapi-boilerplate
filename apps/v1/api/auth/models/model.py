@@ -37,7 +37,7 @@ class Users(Base):
     )
 
 
-class UserSoicalLogin(Base):
+class UserSocialLogin(Base):
     """
     Table used for stored the users social login information
     """
