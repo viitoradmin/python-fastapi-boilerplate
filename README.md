@@ -3,7 +3,7 @@
 <div align="center">
    <img src="images/python_logo.png" alt="Logo" width="80" height="80">
 
-<h3 align="center">Python Fast API boilerplate</h3>
+<h3 align="center">Product Fast API boilerplate</h3>
 
   <p align="center">
       Fast API boiler plate project 
@@ -150,6 +150,154 @@ Requirement of Project
     ```
     alembic downgrade -1
     ```
+
+# Poetry Installation Guide 
+
+This guide provides detailed instructions on how to set up and use [Poetry](https://python-poetry.org/) for managing dependencies and environments in your Python project.
+
+## What is Poetry?
+
+Poetry is a dependency management and packaging tool for Python. It simplifies the process of managing project dependencies, virtual environments, and publishing packages.
+
+Key features:
+- Dependency resolution.
+- Virtual environment management.
+- Project packaging and publishing.
+
+## Prerequisites
+
+- **Python**: Ensure Python is installed on your system. Poetry supports Python 3.7 and above.
+- **Pip**: The Python package manager should also be installed.
+
+You can verify installations using the following commands:
+```bash
+python --version
+pip --version
+```
+
+## Installing Poetry
+
+### 1. Using the Official Installer
+
+Run the following command to install Poetry:
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+### 2. Verifying Installation
+
+Once installed, verify Poetry by running:
+
+```bash
+poetry --version
+```
+
+This should display the installed version of Poetry.
+
+### 3. Adding Poetry to Your PATH
+
+If Poetry is not recognized, ensure it is added to your system PATH. By default, Poetry is installed in:
+- **Unix/macOS**: `$HOME/.local/bin`
+- **Windows**: `%APPDATA%\Python\Scripts`
+
+Add this directory to your PATH.
+
+## Setting Up Poetry in a Project
+
+### 1. Initialize a New Project
+
+Navigate to your project directory and run:
+
+```bash
+poetry init
+```
+
+Follow the prompts to define your project metadata (e.g., package name, version, description).
+
+### 2. Adding Dependencies
+
+To add dependencies:
+
+```bash
+poetry add <package-name>
+```
+
+Example:
+
+```bash
+poetry add requests
+```
+
+To add development dependencies:
+
+```bash
+poetry add --dev <package-name>
+```
+
+### 3. Installing Dependencies
+
+Install all dependencies defined in `pyproject.toml`:
+
+```bash
+poetry install
+```
+
+### 4. Using Virtual Environments
+
+Poetry automatically creates a virtual environment for your project. To activate it:
+
+```bash
+poetry shell
+```
+
+To deactivate, simply exit the shell:
+
+```bash
+exit
+```
+
+## Managing Your Project
+
+### Updating Dependencies
+
+To update dependencies to their latest compatible versions:
+
+```bash
+poetry update
+```
+
+### Listing Installed Packages
+
+To list all installed packages and their versions:
+
+```bash
+poetry show
+```
+
+### Publishing Your Package
+
+If you’re packaging your project, publish it to PyPI with:
+
+```bash
+poetry publish --build
+```
+
+## Uninstalling Poetry
+
+To uninstall Poetry, remove its files:
+
+```bash
+curl -sSL https://install.python-poetry.org | python3 - --uninstall
+```
+
+## Additional Resources
+
+- [Poetry Documentation](https://python-poetry.org/docs/)
+- [Poetry GitHub Repository](https://github.com/python-poetry/poetry)
+
+With this setup, you can efficiently manage Python project dependencies and environments using Poetry. Happy coding!
+
 
 ## Run the server in development mode
  
