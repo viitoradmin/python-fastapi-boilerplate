@@ -34,6 +34,8 @@ requests = "^2.32.3"
 pyotp = "^2.9.0"
 twilio = "^9.4.1"
 pytest = "^8.3.4"
+celery = "^5.4.0"
+apscheduler = "^3.11.0"
 
 
 [build-system]

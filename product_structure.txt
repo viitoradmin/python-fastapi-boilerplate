@@ -30,8 +30,8 @@ python-fastapi-boilerplate/
 │  │  │  │  │  ├─ service.py
 │  │  │  │  │  └─ __init__.py
 │  │  │  │  ├─ tests/
-|  |  |  |  |  |- conftest.py
-|  |  |  |  |  |- test.py
+│  │  │  │  │  ├─ conftest.py
+│  │  │  │  │  ├─ test.py
 │  │  │  │  ├─ view.py
 │  │  │  │  ├─ __init__.py
 │  │  │  └─ __init__.py
@@ -53,6 +53,7 @@ python-fastapi-boilerplate/
 │  ├─ project_path.py
 │  ├─ redis_config.py
 │  ├─ session_config.py
+|  ├─ celery_config.py
 │  ├─ __init__.py
 ├─ core/
 │  ├─ db/
@@ -87,6 +88,12 @@ python-fastapi-boilerplate/
 │  ├─ s3_middleware.py
 │  ├─ session_middleware.py
 │  ├─ __init__.py
+├─ celery_tasks/
+│  ├─ tasks/
+│  │  ├─ example_task.py
+│  │  └─ __init__.py
+│  ├─ worker.py
+│  └─ __init__.py
 ├─ poetry.lock
 ├─ pyproject.toml
 └─ README.md
