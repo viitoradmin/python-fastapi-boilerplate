@@ -24,6 +24,18 @@ pdfkit = "^1.0.0"
 logging = "^0.4.9.6"
 update = "^0.0.1"
 anyio = "^4.7.0"
+click = "^8.1.7"
+alembic = "^1.14.0"
+bcrypt = "^4.2.1"
+jwt = "^1.3.1"
+pyjwt = "^2.10.1"
+google-auth = "^2.37.0"
+requests = "^2.32.3"
+pyotp = "^2.9.0"
+twilio = "^9.4.1"
+pytest = "^8.3.4"
+celery = "^5.4.0"
+apscheduler = "^3.11.0"
 
 
 [build-system]

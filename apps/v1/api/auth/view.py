@@ -1,44 +1,126 @@
 """This module is responsible to contain API's endpoint"""
-from fastapi import APIRouter, Depends, status
-from sqlalchemy.orm import Session
+
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from apps.v1.api.auth import schema
-from apps.v1.api.auth.service import UserAuthService
-from apps.constant import constant
-from core.utils.standard_response import StandardResponse
+from apps.v1.api.auth.services import (
+    user_login_service,
+    social_login_service,
+    user_signup_service,
+    reset_password_service,
+    forgot_password_service,
+    email_verification_service,
+    otp_verification_service,
+    resend_otp_service,
+    otp_resend_verification_service,
+)
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from middleware import authentication_middleware
 from config import db_config
 
 ## Load API's
-router = APIRouter()
+authrouter = APIRouter()
 getdb = db_config.get_db
+oauth2_scheme = HTTPBearer()
+
 
 ## Define verison 1 API's here
-class UserCrudApi():
+class UsersAuthentication:
     """This class is for user's CRUD operation with version 1 API's"""
-    @router.get('/users')
-    async def list_user(db: Session = Depends(getdb)):
-        """This API is for list user.
-        Args: None
-        Returns: 
-            response: will return users list."""
-        try:
-            response = UserAuthService().get_user_service(db)
-            return response
-        except Exception:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
 
-    @router.post('/create/user')
-    async def create_user(body: schema.UserAuth,
-                          db: Session = Depends(getdb)):
-        """This API is for create user.
-        Args: 
-            body(dict) : user's data
-        Returns:
-            response: will return the user's data"""
-        try:
-            # as per pydantic version 2.
-            body = body.model_dump()
-            response = UserAuthService().create_user_service(db, body)
-            return response
-        except Exception:
-            return StandardResponse(False, status.HTTP_400_BAD_REQUEST, None, constant.ERROR_MSG)
+    @authrouter.post("/signup")
+    async def signup_user(body: schema.CreateUser, db: AsyncSession = Depends(getdb)):
+
+        response = await user_signup_service.UserAuthService().signup_user_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/login")
+    async def login_user(
+        body: schema.LoginUser,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await user_login_service.LoginService().login_user_service(db, body)
+        return response
+
+    @authrouter.post("/login/sso")
+    async def login_sso_user(
+        body: schema.LoginUser,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await social_login_service.SsologinService().sso_login_user_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/forgot/password")
+    async def forgot_password(
+        body: schema.ForgotPassword,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await forgot_password_service.ForgotPasswordService().forgot_password_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/reset/password")
+    async def reset_password(
+        body: schema.ResetPassword,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = (
+            await reset_password_service.ResetPasswordService().reset_password_service(
+                db, body
+            )
+        )
+        return response
+
+    @authrouter.post("/user/verification")
+    async def user_verification(
+        body: schema.EmailVerification,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await email_verification_service.EmailVerificationService().user_verification_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/otp/verification")
+    async def otp_verification(
+        body: schema.VerifyOtp,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await otp_verification_service.OtpVerificationService().otp_verification_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/otp/resend")
+    async def otp_resend(
+        body: schema.ResendOtp,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await resend_otp_service.ResendOTPService().otp_resend_service(
+            db, body
+        )
+        return response
+
+    @authrouter.post("/otp/resend/verification")
+    async def otp_resend_verification(
+        body: schema.VerifyOtp,
+        db: AsyncSession = Depends(getdb),
+    ):
+
+        response = await otp_resend_verification_service.ResendOtpVerificationService().otp_resend_verification_service(
+            db, body
+        )
+        return response
