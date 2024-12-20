@@ -53,6 +53,7 @@ class ResetPasswordService:
                 ).make
             user_data = jsonable_encoder(user_object)
             del user_data["password"]
+            db.commit()  # Commit the transaction
             if client_save is not None:
                 return StandardResponse(
                     True,

@@ -94,3 +94,7 @@ TIMEZONE_EST = "US/Eastern"
 # Rate limits
 RATE_LIMIT = 100
 TIME_WINDOW = 60
+
+# Channel to send the messages
+SMS_CHANNEL = "sms"
+EMAIL_CHANNEL = "email"

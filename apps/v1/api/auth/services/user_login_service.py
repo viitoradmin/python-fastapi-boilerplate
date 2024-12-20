@@ -35,8 +35,7 @@ class LoginService:
 
             # generate token
             access_token = JWTOAuth2().encode_access_token(
-                identity= user_object.email
-                
+                identity=user_object.email
                 # identity={
                 #     "email": user_object.email,
                 #     "id": user_object.id,
@@ -46,6 +45,7 @@ class LoginService:
             user_data = jsonable_encoder(user_object)
             user_data["access_token"] = access_token
             del user_data["password"]
+            db.commit()  # Commit the transaction
             return StandardResponse(
                 True,
                 status.HTTP_200_OK,

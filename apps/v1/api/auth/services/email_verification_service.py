@@ -30,7 +30,7 @@ class EmailVerificationService:
                 return StandardResponse(
                     status.HTTP_400_BAD_REQUEST,
                     constant.STATUS_NULL,
-                    message_variable.userNotFound,
+                    message_variable.ERROR_USER_NOT_FOUND,
                 ).make
 
             user_data = jsonable_encoder(user_object)
@@ -38,16 +38,17 @@ class EmailVerificationService:
                 return StandardResponse(
                     status.HTTP_400_BAD_REQUEST,
                     constant.STATUS_NULL,
-                    message_variable.invalidOTP,
+                    message_variable.INVALID_OTP,
                 ).make
 
             data = {}
+            db.commit()  # Commit the transaction
             return StandardResponse(
-                status.HTTP_200_OK, data, message_variable.verifiedSuccessfully
+                status.HTTP_200_OK, data, message_variable.SUCCESS_USER_VERIFIED
             ).make
         except Exception as e:
             return StandardResponse(
                 status.HTTP_400_BAD_REQUEST,
                 constant.STATUS_NULL,
-                message_variable.somethingWentWrong,
+                message_variable.SOMETHING_WENT_WRONG,
             ).make

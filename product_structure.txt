@@ -29,7 +29,9 @@ python-fastapi-boilerplate/
 │  │  │  │  ├─ services/
 │  │  │  │  │  ├─ service.py
 │  │  │  │  │  └─ __init__.py
-│  │  │  │  ├─ test.py
+│  │  │  │  ├─ tests/
+|  |  |  |  |  |- conftest.py
+|  |  |  |  |  |- test.py
 │  │  │  │  ├─ view.py
 │  │  │  │  ├─ __init__.py
 │  │  │  └─ __init__.py

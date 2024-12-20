@@ -1,4 +1,3 @@
-
 from fastapi import status
 from google.auth.transport import requests
 from google.oauth2 import id_token
@@ -14,7 +13,7 @@ from apps.v1.api.auth.models.attribute import SsoType
 
 class SsologinService:
     """This class represents the user creation service"""
-    
+
     def get_google_account(self, access_token: str):
         """
         This function is used to get the user's facebook profile.
@@ -32,16 +31,15 @@ class SsologinService:
                 access_token, requests.Request(), social_login.GOOGLE_CLIENT_ID
             )
             return profile
-        
+
         except Exception as e:
             profile = constant_variable.STATUS_NULL
 
-    
     async def sso_login_user_service(self, db: AsyncSession, body):
         try:
             body = body.dict()
             # TODO: as per database architecture retrive user object from sso login table
-            user_data={}
+            user_data = {}
             # Login with google
             provider_token = body["provider_token"]
             provider = body["provider"]
@@ -68,6 +66,7 @@ class SsologinService:
             # user_data = jsonable_encoder(user_object)
             user_data["access_token"] = access_token
             del user_data["password"]
+            db.commit()  # Commit the transaction
             return StandardResponse(
                 True,
                 status.HTTP_200_OK,

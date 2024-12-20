@@ -13,6 +13,9 @@ EMAIL_ALLREADY_EXISTS = "Email already exists!"
 SUCCESS_USER_LOGIN = "User logged in successfully!"
 SUCCESS_RESET_LINK = "User reset link sent successfully!"
 SUCCESS_USER_VERIFIED = "User verified successfully!"
+SUCCESS_USER_LOGGED_IN = "Logged in successfully!"
+SUCCESS_OTP_SENT = "OTP sent successfully!"
+
 
 ## Error message ##
 ERROR_USER_CREATE = "Error occurred while creating the user!"
@@ -29,6 +32,13 @@ GENERIC_ERROR = "An error ocured while saving data"
 SOMETHING_WENT_WRONG = "Woops, something's not quite right, please try again!"
 INVALID_USER_CREDENTIAL = "Invalid user credentials!"
 INVALID_PROVIDER_TOKEN = "Invalid provider token!"
+INVALID_OTP = "Invalid OTP!"
+ERROR_USER_NOT_FOUND = "User not found!"
+ERROR_INVALID_REQUEST_BODY = "Invalid request body!"
+ERROR_SMS_SERVICE = "SMS service not found!"
+ERROR_OTP_VERIFICATION = "OTP verification failed!"
+ERROR_OTP_SEND = "Error sending OTP to user!"
+
 
 ## Info message ##
 INFO_NO_RECORDS = "No records found!"

@@ -22,6 +22,7 @@ class ForgotPasswordService:
                     message_variable.INVALID_USER_CREDENTIAL,
                 ).make
             reset_link = JWTOAuth2().encode_reset_password_link(body.email)
+            db.commit()  # Commit the transaction
             return StandardResponse(
                 True,
                 status.HTTP_200_OK,

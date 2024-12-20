@@ -15,9 +15,10 @@ class UserAuthService:
 
     async def signup_user_service(self, db: AsyncSession, body):
         try:
+            body = body.dict()
             # Check body's Email already exist
             user_auth_method = UserAuthMethod(Users)
-            if user_object := await user_auth_method.find_by_email(db, body.email):
+            if user_object := await user_auth_method.find_by_email(db, body["email"]):
                 return StandardResponse(
                     False,
                     status.HTTP_400_BAD_REQUEST,
@@ -27,9 +28,9 @@ class UserAuthService:
 
             # For password hashing
             hashed_password = bcrypt.hashpw(
-                body.password.encode("utf-8"), bcrypt.gensalt()
+                body["password"].encode("utf-8"), bcrypt.gensalt()
             )
-            body = body.dict()
+
             body["password"] = hashed_password
             body["uuid"] = uuid.uuid4()
             # Add the body into the database
@@ -47,6 +48,7 @@ class UserAuthService:
                 ).make
             user_data = jsonable_encoder(user_object)
             del user_data["password"]
+            db.commit()  # Commit the transaction
             if client_save is not None:
                 return StandardResponse(
                     True,

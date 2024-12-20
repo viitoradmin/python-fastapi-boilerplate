@@ -1,5 +1,6 @@
 """This module is for swager and request parameter schema"""
 
+from typing import Optional
 from pydantic import BaseModel, ConfigDict, EmailStr, field_validator
 from core.utils import constant_variable as constant
 from core.utils.validation import ValidationMethods
@@ -146,3 +147,74 @@ class EmailVerification(BaseModel):
     @field_validator("password")
     def password_validation(cls, v):
         return ValidationMethods().validate_password(v)
+
+
+class VerifyOtp(BaseModel):
+    user_type: int
+    phone_no: str
+    otp: str
+    is_exist: bool
+    password: str
+    otp_referenceId: str
+
+    class Config:
+        model_config = ConfigDict(
+            from_attributes=constant.STATUS_TRUE,
+            extra="forbid",
+            json_schema_extra={
+                "example": {
+                    "user_type": "123456",
+                    "phone_no": "123456",
+                    "otp": "123456",
+                    "is_exist": True,
+                    "password": "Test@123",
+                    "otp_referenceId": "123456",
+                }
+            },
+        )
+
+    @field_validator("otp")
+    def otp_must_be_required(cls, v):
+        return ValidationMethods().not_null_validator(v, "otp")
+
+    @field_validator("otp_referenceId")
+    def otp_referenceId_must_be_required(cls, v):
+        return ValidationMethods().not_null_validator(v, "otp_referenceId")
+
+    @field_validator("password")
+    def password_validation(cls, v):
+        return ValidationMethods().validate_password(v)
+
+
+class ResendOtp(BaseModel):
+    email: Optional[EmailStr] = constant.STATUS_NULL
+    country_code: Optional[str] = constant.STATUS_NULL
+    phone_no: Optional[str] = constant.STATUS_NULL
+
+    class Config:
+        model_config = ConfigDict(
+            from_attributes=constant.STATUS_TRUE,
+            extra="forbid",
+            json_schema_extra={
+                "example": {
+                    "email": "johnsmith@example.com",
+                    "country_code": "+91",
+                    "phone_no": "1234567890",
+                }
+            },
+        )
+
+
+@field_validator("phone_no")
+def phone_no_must_be_required(cls, v):
+    return ValidationMethods().not_null_validator(v, "phone_no")
+
+
+@field_validator("country_code")
+def country_code_must_be_required(cls, v):
+    return ValidationMethods().not_null_validator(v, "country_code")
+
+
+@field_validator("email")
+def email_must_be_required(cls, v):
+    return ValidationMethods().not_null_validator(v, "email")
