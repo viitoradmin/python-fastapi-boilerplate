@@ -1,0 +1,8 @@
+{
+    "paths": {
+        "user": "uploads/images",
+        "admin": "uploads/documents",
+        "videos": "uploads/videos",
+        "default": "uploads/misc"
+    }
+}
